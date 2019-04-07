@@ -1,0 +1,14 @@
+language: julia
+os:
+  - linux
+  - osx
+sudo: required
+dist: trusty
+julia:
+  - 0.5
+  - 0.6
+  - nightly
+notifications:
+  email: false
+after_success:
+  - julia -e 'cd(Pkg.dir("LibArchive")); Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
